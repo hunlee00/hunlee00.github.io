@@ -1010,8 +1010,24 @@ a {
    12. Responsive
    ========================================================================== */
 
-/* Bio text line-height adjustment */
+/* Let bio text wrap below the photo and social links on narrow screens. */
 @media (max-width: 650px) {
+    .bio-grid {
+        display: flow-root;
+    }
+
+    .bio-social {
+        display: block;
+        float: left;
+        width: var(--photo-size);
+        margin: 0 clamp(var(--space-md), 4vw, var(--space-xl)) var(--space-sm) 0;
+    }
+
+    .bio-right {
+        display: block;
+        align-content: normal;
+    }
+
     .bio-card .bio-right p {
         line-height: var(--bio-line-height-compact);
         text-wrap: auto;
