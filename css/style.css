@@ -28,9 +28,9 @@
  * 4. Layout Containers
  * 5. Bio Card
  * 6. Section Headers & Collapsible
- * 7. Tag System (filters + publication tags)
- * 8. Content Rows (shared: publications, courses, projects)
- * 9. Publications
+ * 7. Tag System (filters + research tags)
+ * 8. Content Rows (shared: research, courses, projects)
+ * 9. Research
  * 10. Teaching
  * 11. Footer & Utilities
  * 12. Responsive
@@ -73,11 +73,11 @@
     --bio-line-height: 1.7;
     --bio-line-height-compact: 1.6;
     --bio-line-height-compact-2: 1.48;
-    --publication-title-font-size: clamp(0.45rem, 2.1vw, 0.85rem);
-    --publication-authors-font-size: clamp(0.4rem, 2.0vw, 0.8rem);
-    --publication-venue-font-size: clamp(0.4rem, 2.0vw, 0.8rem);
-    --publication-description-font-size: clamp(0.35rem, 1.8vw, 0.72rem);
-    --publication-links-font-size: clamp(0.4rem, 2.0vw, 0.8rem);
+    --research-title-font-size: clamp(0.45rem, 2.1vw, 0.85rem);
+    --research-authors-font-size: clamp(0.4rem, 2.0vw, 0.8rem);
+    --research-venue-font-size: clamp(0.4rem, 2.0vw, 0.8rem);
+    --research-description-font-size: clamp(0.35rem, 1.8vw, 0.72rem);
+    --research-links-font-size: clamp(0.4rem, 2.0vw, 0.8rem);
     --tag-pill-font-size: clamp(0.25rem, 1.3vw, 0.6rem);
     --tag-pill-padding-v: clamp(1px, 0.3vw, 2px);
     --tag-pill-padding-h: clamp(2px, 0.8vw, 8px);
@@ -88,9 +88,9 @@
 
     /* Marginalia (News Section) */
     --marginalia-label-font-size: clamp(0.65rem, 2.2vw, 1.0rem);
-    --marginalia-item-font-size: var(--publication-authors-font-size);
+    --marginalia-item-font-size: var(--research-authors-font-size);
     --marginalia-gap: clamp(3px, 2vw, 10px);
-    --marginalia-vspace: calc(var(--publication-vspace) * 2.5);
+    --marginalia-vspace: calc(var(--research-vspace) * 2.5);
 
     /* Layout */
     --max-width: 750px;
@@ -102,7 +102,7 @@
     --space-lg: 18px;
     --space-xl: 28px;
     --space-2xl: 40px;
-    --publication-vspace: clamp(2px, 0.6vw, 5px);
+    --research-vspace: clamp(2px, 0.6vw, 5px);
     --link-item-hspace: clamp(2px, 0.6vw, 5px);
 
     /* Transitions */
@@ -296,7 +296,7 @@ a {
     font-size: clamp(0.85rem, 2.05vw, 0.9rem);
 }
 
-.bio-card .bio-right p a:not(.publication-links a):not(.contact-info a) {
+.bio-card .bio-right p a:not(.research-links a):not(.contact-info a) {
     color: inherit;
     text-decoration: underline;
     text-decoration-style: dashed;
@@ -305,7 +305,7 @@ a {
     transition: text-decoration-color var(--transition-fast);
 }
 
-.bio-card .bio-right p a:not(.publication-links a):not(.contact-info a):hover {
+.bio-card .bio-right p a:not(.research-links a):not(.contact-info a):hover {
     text-decoration-color: #a0a0a0;
 }
 
@@ -454,7 +454,7 @@ a {
     font-style: italic;
     color: var(--color-gray);
     cursor: pointer;
-    margin-top: calc(var(--publication-vspace) * 2);
+    margin-top: calc(var(--research-vspace) * 2);
 }
 
 .marginalia-toggle:hover {
@@ -495,7 +495,7 @@ a {
    7. Tag System
    ========================================================================== */
 
-/* Base Tag Style (used in .icon-tags under publication thumbnails) */
+/* Base Tag Style (used in .icon-tags under research thumbnails) */
 .tag {
     display: inline-block;
     font-size: var(--tag-pill-font-size);
@@ -580,7 +580,7 @@ a {
     color: var(--color-white);
 }
 
-/* Publication Tags */
+/* Research Tags */
 .icon-tags {
     display: flex;
     flex-wrap: wrap;
@@ -594,15 +594,15 @@ a {
 .row-content .icon-tags {
     justify-content: flex-start;
     margin-top: 0;
-    margin-bottom: calc(var(--publication-vspace) * 2);
+    margin-bottom: calc(var(--research-vspace) * 2);
 }
 
 /* ==========================================================================
    8. Content Rows (Shared Styles)
    ========================================================================== */
 
-/* Base row layout for publications, courses, and projects */
-.publication-row,
+/* Base row layout for research, courses, and projects */
+.research-row,
 .course-row {
     display: grid;
     grid-template-columns: 1fr;
@@ -614,7 +614,7 @@ a {
     align-items: start;
 }
 
-.publication-row:last-child,
+.research-row:last-child,
 .course-row:last-child {
     border-bottom: none;
     margin-bottom: 0;
@@ -626,11 +626,11 @@ a {
 }
 
 /* ==========================================================================
-   9. Publications
+   9. Research
    ========================================================================== */
 
-/* Publication row filter animation */
-.publication-row {
+/* Research row filter animation */
+.research-row {
     transition: opacity var(--transition-base),
                 transform var(--transition-base),
                 max-height 0.4s ease,
@@ -639,7 +639,7 @@ a {
     overflow: hidden;
 }
 
-.publication-row.filtered-out {
+.research-row.filtered-out {
     opacity: 0;
     transform: translateY(-10px);
     max-height: 0;
@@ -649,27 +649,27 @@ a {
     pointer-events: none;
 }
 
-.publication-row.last-visible {
+.research-row.last-visible {
     border-bottom: none;
 }
 
-/* Publication Typography */
-.publication-title,
+/* Research Typography */
+.research-title,
 .course-row h5 {
     font-family: var(--font-body);
-    font-size: var(--publication-title-font-size);
+    font-size: var(--research-title-font-size);
     line-height: 1.4;
     color: var(--color-black);
-    margin-bottom: var(--publication-vspace);
+    margin-bottom: var(--research-vspace);
     text-wrap: auto;
 }
 
-.publication-authors,
+.research-authors,
 .teaching-position {
-    font-size: var(--publication-authors-font-size);
+    font-size: var(--research-authors-font-size);
     line-height: 1.4;
     color: var(--color-gray-dark);
-    margin-bottom: var(--publication-vspace);
+    margin-bottom: var(--research-vspace);
     padding-left: var(--space-md);
     text-wrap: auto;
 }
@@ -681,7 +681,7 @@ a {
 
 /* Keep the position beside the course title when it fits; move position and
    term together to the next line when space runs out. */
-.course-row .publication-title {
+.course-row .research-title {
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
@@ -705,7 +705,7 @@ a {
     border-bottom: none;
 }
 
-.course-row .publication-title {
+.course-row .research-title {
     margin-bottom: 0;
 }
 
@@ -728,16 +728,16 @@ a {
     color: var(--color-black);
 }
 
-.publication-journal {
-    font-size: var(--publication-venue-font-size);
+.research-journal {
+    font-size: var(--research-venue-font-size);
     line-height: 1.4;
     color: var(--color-black);
-    margin-bottom: var(--publication-vspace);
+    margin-bottom: var(--research-vspace);
     padding-left: var(--space-md);
     text-wrap: auto;
 }
 
-.publication-journal a {
+.research-journal a {
     color: var(--color-black);
     font-weight: 650;
 }
@@ -749,27 +749,27 @@ a {
 }
 
 /* Compact research and project entries: title, metadata, then keywords. */
-#publications-section .publication-row,
-#projects-section .publication-row {
+#research-section .research-row,
+#projects-section .research-row {
     margin-bottom: 20px;
     padding: 0;
     border-bottom: none;
 }
 
-#publications-section .publication-row:last-child,
-#projects-section .publication-row:last-child {
+#research-section .research-row:last-child,
+#projects-section .research-row:last-child {
     margin-bottom: 0;
 }
 
-#publications-section .publication-title,
-#projects-section .publication-title {
+#research-section .research-title,
+#projects-section .research-title {
     font-size: clamp(0.85rem, 2.1vw, 0.9rem);
     font-weight: 600;
     margin-bottom: 4px;
 }
 
-#publications-section .publication-meta,
-#projects-section .publication-meta {
+#research-section .research-meta,
+#projects-section .research-meta {
     display: flex;
     align-items: baseline;
     gap: 12px;
@@ -777,8 +777,8 @@ a {
     line-height: 1.5;
 }
 
-#publications-section .publication-authors,
-#projects-section .publication-authors {
+#research-section .research-authors,
+#projects-section .research-authors {
     flex: 1;
     min-width: 0;
     margin: 0;
@@ -788,48 +788,48 @@ a {
     color: var(--color-gray);
 }
 
-#publications-section .author-self {
+#research-section .author-self {
     font-weight: 600;
     color: var(--color-gray-dark);
 }
 
-#publications-section .publication-status {
+#research-section .research-status {
     color: var(--color-gray);
     white-space: nowrap;
 }
 
-/* Replace publication-status with publication-venue when a venue is confirmed. */
-#publications-section .publication-venue {
+/* Replace research-status with research-venue when a venue is confirmed. */
+#research-section .research-venue {
     font-weight: 600;
     color: var(--color-gray-dark);
 }
 
-#publications-section .publication-pdf,
-#projects-section .publication-pdf {
+#research-section .research-pdf,
+#projects-section .research-pdf {
     flex-shrink: 0;
     white-space: nowrap;
     color: var(--color-gray-dark);
 }
 
-#publications-section .icon-tags,
+#research-section .icon-tags,
 #projects-section .icon-tags {
     margin-top: 6px;
     margin-bottom: 0;
     gap: 5px;
 }
 
-#publications-section .tag,
+#research-section .tag,
 #projects-section .tag {
     font-size: 0.65rem;
     opacity: 1;
 }
 
-#projects-section .publication-meta {
+#projects-section .research-meta {
     flex-wrap: wrap;
     row-gap: 4px;
 }
 
-#projects-section .publication-authors {
+#projects-section .research-authors {
     flex: 1 1 auto;
 }
 
@@ -851,21 +851,21 @@ a {
     text-underline-offset: 2px;
 }
 
-/* Publication Description */
-.publication-description-wrapper {
+/* Research Description */
+.research-description-wrapper {
     padding-left: var(--space-md);
-    margin-bottom: var(--publication-vspace);
-    font-size: var(--publication-description-font-size);
+    margin-bottom: var(--research-vspace);
+    font-size: var(--research-description-font-size);
     line-height: 1.4;
     color: var(--color-gray);
     text-wrap: auto;
 }
 
-.publication-description-text {
+.research-description-text {
     display: block;
 }
 
-.publication-measure {
+.research-measure {
     position: absolute;
     visibility: hidden;
     height: auto;
@@ -884,35 +884,35 @@ a {
     color: var(--color-gray-dark);
 }
 
-/* Publication Links */
-.publication-links {
-    font-size: var(--publication-links-font-size);
+/* Research Links */
+.research-links {
+    font-size: var(--research-links-font-size);
     color: var(--color-gray-dark);
     padding-left: var(--space-md);
     text-wrap: auto;
 }
 
-.publication-links .link-item {
+.research-links .link-item {
     display: inline-block;
     white-space: nowrap;
     margin-right: var(--link-item-hspace);
 }
 
-.publication-links .link-item:last-child {
+.research-links .link-item:last-child {
     margin-right: 0;
 }
 
-.publication-links i {
+.research-links i {
     display: inline-block;
     color: var(--color-gray-dark);
     margin-right: 4px;
 }
 
-.publication-links a {
+.research-links a {
     color: var(--color-gray-dark);
 }
 
-.publication-links a:hover {
+.research-links a:hover {
     color: var(--color-black);
 }
 
@@ -922,17 +922,17 @@ a {
     margin-right: 0.3em;
 }
 
-.publication-links .featured-wrap a {
+.research-links .featured-wrap a {
     color: var(--color-gray-dark);
     font-weight: 550;
     letter-spacing: -0.01em;
 }
 
-.publication-links .featured-wrap a:hover {
+.research-links .featured-wrap a:hover {
     color: var(--color-black);
 }
 
-.publication-links .featured-wrap i {
+.research-links .featured-wrap i {
     color: var(--color-gray-dark);
     margin-right: 4px;
 }
@@ -990,7 +990,7 @@ a {
     text-align: center;
     margin: calc(var(--space-2xl) * 1.1) 0 var(--space-xl);
     font-family: var(--font-body);
-    font-size: var(--publication-description-font-size);
+    font-size: var(--research-description-font-size);
     font-style: normal;
     color: var(--color-gray);
     letter-spacing: 0;
@@ -1040,7 +1040,7 @@ a {
         padding-bottom: var(--space-sm);
     }
 
-    .publication-row,
+    .research-row,
     .course-row {
         padding-left: 0;
         margin-bottom: var(--space-md);
@@ -1053,12 +1053,12 @@ a {
     }
 
     .course-row .teaching-position,
-    .course-row .publication-description-wrapper,
-    .course-row .publication-links {
+    .course-row .research-description-wrapper,
+    .course-row .research-links {
         padding-left: 8px;
     }
 
-    .course-row .publication-title {
+    .course-row .research-title {
         align-items: flex-start;
         flex-direction: column;
         gap: 0;

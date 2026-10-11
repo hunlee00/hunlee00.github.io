@@ -6,9 +6,9 @@
  *
  * Modules:
  * 1. Back to Top Button - Shows/hides a scroll-to-top button
- * 2. Publication Link Wrapping - Groups icons with their links for better wrapping
- * 3. Publication Description Truncation - Collapses long abstracts with expand/collapse
- * 4. Tag Filtering - Filters publications by category tags
+ * 2. Research Link Wrapping - Groups icons with their links for better wrapping
+ * 3. Research Description Truncation - Collapses long abstracts with expand/collapse
+ * 4. Tag Filtering - Filters research by category tags
  * 5. News Expand/Collapse - Shows/hides older news items
  */
 
@@ -23,12 +23,12 @@
         // Selectors
         selectors: {
             backToTop: '.back-to-top',
-            publicationLinks: '.publication-links',
-            publicationDescription: '.publication-description',
+            researchLinks: '.research-links',
+            researchDescription: '.research-description',
             filterDropdown: '.filter-dropdown',
             filterToggle: '.filter-toggle',
             tagFilter: '.tag-filter',
-            publicationRow: '#publications-section .publication-row',
+            researchRow: '#research-section .research-row',
             newsWrapper: '.marginalia-items-wrapper',
             newsToggle: '.marginalia-toggle'
         },
@@ -80,17 +80,17 @@
     }
 
     // ==========================================================================
-    // 2. Publication Link Wrapping
+    // 2. Research Link Wrapping
     // Groups FontAwesome icons with their adjacent links for better line wrapping
     // ==========================================================================
 
     /**
      * Wraps icon + link pairs in span elements to prevent awkward line breaks.
-     * Finds all icons in publication-links containers and groups them with
+     * Finds all icons in research-links containers and groups them with
      * their following anchor element.
      */
     function initLinkWrapping() {
-        document.querySelectorAll(CONFIG.selectors.publicationLinks).forEach(function(container) {
+        document.querySelectorAll(CONFIG.selectors.researchLinks).forEach(function(container) {
             container.querySelectorAll('i').forEach(function(icon) {
                 var link = icon.nextElementSibling;
                 if (link && link.tagName === 'A') {
@@ -105,12 +105,12 @@
     }
 
     // ==========================================================================
-    // 3. Publication Description Truncation
-    // Collapses long publication abstracts to N lines with expand/collapse toggle
+    // 3. Research Description Truncation
+    // Collapses long research abstracts to N lines with expand/collapse toggle
     // ==========================================================================
 
     /**
-     * Initializes description truncation for publication abstracts.
+     * Initializes description truncation for research abstracts.
      * Uses binary search to find optimal truncation point that fits within
      * the configured number of lines. Responsive to window resize.
      */
@@ -118,19 +118,19 @@
         var wrapperData = [];
 
         // Set up wrapper elements for each description
-        document.querySelectorAll(CONFIG.selectors.publicationDescription).forEach(function(desc) {
+        document.querySelectorAll(CONFIG.selectors.researchDescription).forEach(function(desc) {
             var fullHtml = desc.innerHTML.trim();
             var wrapper = document.createElement('div');
-            wrapper.className = 'publication-description-wrapper';
+            wrapper.className = 'research-description-wrapper';
             desc.parentNode.insertBefore(wrapper, desc);
 
             var textEl = document.createElement('div');
-            textEl.className = 'publication-description-text';
+            textEl.className = 'research-description-text';
             wrapper.appendChild(textEl);
 
             // Hidden element used for measuring text height
             var measureEl = document.createElement('div');
-            measureEl.className = 'publication-description-text publication-measure';
+            measureEl.className = 'research-description-text research-measure';
             wrapper.appendChild(measureEl);
 
             desc.remove();
@@ -461,13 +461,13 @@
 
     // ==========================================================================
     // 4. Tag Filtering
-    // Filters publications by category using data-tag attributes
+    // Filters research by category using data-tag attributes
     // ==========================================================================
 
     /**
-     * Initializes the publication tag filtering system.
-     * Reads data-tag attributes from filter buttons and publication tags.
-     * Toggles visibility of publications based on selected filter.
+     * Initializes the research tag filtering system.
+     * Reads data-tag attributes from filter buttons and research tags.
+     * Toggles visibility of research based on selected filter.
      */
     function initTagFiltering() {
         var filterDropdown = document.querySelector(CONFIG.selectors.filterDropdown);
@@ -480,7 +480,7 @@
         });
 
         /**
-         * Filters publications to show only those with the selected tag.
+         * Filters research to show only those with the selected tag.
          * @param {string} selectedTag - Tag to filter by, or 'all' for no filter
          */
         function filterByTag(selectedTag) {
@@ -495,8 +495,8 @@
                 ? CONFIG.labels.filterAll
                 : '<i class="fas fa-filter"></i> ' + selectedTag;
 
-            // Filter publications (only in publications section, not personal projects)
-            var allRows = document.querySelectorAll(CONFIG.selectors.publicationRow);
+            // Filter research (only in research section, not personal projects)
+            var allRows = document.querySelectorAll(CONFIG.selectors.researchRow);
             allRows.forEach(function(row) {
                 row.classList.remove('last-visible');
 
@@ -512,7 +512,7 @@
             });
 
             // Mark last visible row (for border styling)
-            var visibleRows = document.querySelectorAll(CONFIG.selectors.publicationRow + ':not(.filtered-out)');
+            var visibleRows = document.querySelectorAll(CONFIG.selectors.researchRow + ':not(.filtered-out)');
             if (visibleRows.length > 0) {
                 visibleRows[visibleRows.length - 1].classList.add('last-visible');
             }
