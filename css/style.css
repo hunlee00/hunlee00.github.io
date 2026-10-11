@@ -236,8 +236,7 @@ a {
     gap: clamp(var(--space-md), 4vw, var(--space-xl));
 }
 
-/* Photo & Social */
-.bio-social,
+/* Photo & Bio Text */
 .bio-right {
     display: grid;
     grid-template-rows: 1fr auto;
@@ -257,15 +256,14 @@ a {
     display: block;
 }
 
-.bio-social .social-links {
-    display: flex;
-    justify-content: center;
+.contact-info .social-links {
+    display: inline-flex;
+    vertical-align: middle;
     gap: clamp(5px, 1.8vw, 10px);
-    margin-top: auto;
-    padding-top: var(--space-md);
+    margin-left: 12px;
 }
 
-.bio-social .social-links a {
+.contact-info .social-links a {
     color: var(--color-gray);
     font-size: clamp(0.5rem, 1.5vw, 0.75rem);
     width: clamp(16px, 3.3vw, 26px);
@@ -278,9 +276,14 @@ a {
     transition: all var(--transition-fast);
 }
 
-.bio-social .social-links a:hover {
+.contact-info .social-links a:hover {
     color: var(--color-black);
     border-color: var(--color-black);
+}
+
+.contact-info .social-links i {
+    color: inherit;
+    margin: 0;
 }
 
 .bio-card .bio-right p {
@@ -1010,7 +1013,7 @@ a {
    12. Responsive
    ========================================================================== */
 
-/* Let bio text wrap below the photo and social links on narrow screens. */
+/* Let bio text wrap below the photo on narrow screens. */
 @media (max-width: 650px) {
     .bio-grid {
         display: flow-root;
@@ -1098,7 +1101,7 @@ a {
         color: black;
     }
 
-    .bio-social a > i {
+    .contact-info .social-links {
         display: none;
     }
 
