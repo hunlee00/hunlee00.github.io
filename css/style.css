@@ -845,9 +845,7 @@ a {
 }
 
 #projects-section .project-award {
-    background: var(--highlight-gradient);
     color: var(--color-gray-dark);
-    font-weight: 600;
 }
 
 #projects-section a:hover {
