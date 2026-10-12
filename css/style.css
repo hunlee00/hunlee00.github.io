@@ -198,6 +198,7 @@ a {
     margin: 0 auto var(--space-lg) auto;
     padding: var(--space-lg) 0;
     background: var(--color-white);
+    container-type: inline-size;
 }
 
 .content-section a {
@@ -703,6 +704,11 @@ a {
     white-space: nowrap;
 }
 
+.course-meta .journal-submitted::before {
+    content: "·";
+    margin-right: 0.3em;
+}
+
 .course-row {
     margin-bottom: 0;
     padding-bottom: var(--space-sm);
@@ -851,6 +857,34 @@ a {
 #projects-section a:hover {
     text-decoration: underline;
     text-underline-offset: 2px;
+}
+
+/* Stack Teaching metadata and Project links below the full 750px content width. */
+@container (width < 750px) {
+    .course-row .research-title {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 4px 0;
+    }
+
+    .course-meta {
+        flex: none;
+        width: 100%;
+        white-space: normal;
+    }
+
+    .course-meta .journal-submitted::before {
+        content: none;
+    }
+
+    #projects-section .research-meta {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    #projects-section .project-resources {
+        margin-left: 0;
+    }
 }
 
 /* Research Description */
@@ -1074,19 +1108,6 @@ a {
     .course-row .research-description-wrapper,
     .course-row .research-links {
         padding-left: 8px;
-    }
-
-    .course-row .research-title {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 4px 0;
-    }
-
-    .course-meta {
-        flex: none;
-        width: 100%;
-        padding-left: 8px;
-        white-space: normal;
     }
 }
 
