@@ -1046,6 +1046,29 @@ a {
    12. Responsive
    ========================================================================== */
 
+/* Enlarge the desktop bio and entries while preserving smaller-screen sizing. */
+@media (min-width: 786px) {
+    :root {
+        --photo-size: 145px;
+    }
+
+    .bio-card .bio-right > p:first-child {
+        font-size: 1rem;
+    }
+
+    #research-section .research-title,
+    #projects-section .research-title,
+    .course-row .research-title {
+        font-size: 0.95rem;
+    }
+
+    #research-section .research-meta,
+    #projects-section .research-meta,
+    .course-meta {
+        font-size: 0.85rem;
+    }
+}
+
 /* Let bio text wrap below the photo on narrow screens. */
 @media (max-width: 650px) {
     .bio-grid {
